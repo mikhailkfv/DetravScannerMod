@@ -109,9 +109,7 @@ public class BehaviourDetravToolElectricProPick extends BehaviourDetravToolProPi
                                                 && ((GT_TileEntity_Ores) tTileEntity).mNatural == true) {
                                             tMetaID = (short)((GT_TileEntity_Ores) tTileEntity).getMetaData();
                                             try {
-
-                                                String name = GT_LanguageManager.getTranslation(
-                                                        tBlock.getUnlocalizedName() + "." + tMetaID + ".name");
+                                            	String name = GT_LanguageManager.getTranslation(tBlock.getUnlocalizedName() + "." + tMetaID + ".name");
                                                 if (name.startsWith("Small")) if (data != 1) continue;
                                                 packet.addBlock(c.xPosition * 16 + x, y, c.zPosition * 16 + z, tMetaID);
                                             }
