@@ -6,6 +6,8 @@ import com.detrav.gui.textures.DetravMapTexture;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_LanguageManager;
@@ -134,6 +136,7 @@ public class DetravProPickPacket00 extends DetravPacket {
                     } else {
                         for (short meta : map[i][j].values()) {
                             String name;
+                            String format;
                             short[] rgba;
                             //Пока только по одному буду
                             Materials tMaterial = null;
@@ -148,7 +151,8 @@ public class DetravProPickPacket00 extends DetravPacket {
                             }
                             rgba = tMaterial.getRGBA();
                             //ores.put(GT_Ore)
-                            name = GT_LanguageManager.getTranslation("gt.blockores." + meta + ".name");
+                            format = LanguageRegistry.instance().getStringLocalization("gt.blockores." + meta + ".name");
+                            name = Materials.getLocalizedNameForItem(format, meta%1000);
 
                             raster.setSample(i, j, 0, rgba[0]);
                             raster.setSample(i, j, 1, rgba[1]);
